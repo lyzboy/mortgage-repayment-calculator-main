@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CalculatorInput.css';
+import styles from './CalculatorInput.module.scss';
 
 const CalculatorInput = ({label, designator, onLeft=true})=>{
   return(
@@ -8,11 +8,11 @@ const CalculatorInput = ({label, designator, onLeft=true})=>{
         {label}
       </label>
       {onLeft ? 
-      <div className={`styles.mock-input`}>
+      <div className={styles.mockInput}>
         <p className='mock-input__designator'>{designator}</p>
         <input className='mock-input__input' type='number'></input>
       </div> : 
-      <div className={`styles.mock-input`}>
+      <div className={styles.mockInput}>
       <input type='number'></input>
       <p>{designator}</p>
     </div>}
