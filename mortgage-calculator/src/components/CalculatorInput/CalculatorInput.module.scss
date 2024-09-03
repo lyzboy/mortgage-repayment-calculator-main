@@ -1,5 +1,28 @@
 @import "../../styles/common";
 
+.container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
 .mockInput {
+    width: 30rem;
+    height: 2.5rem;
     color: map-get($color, "Slate-900");
+    border: solid 1px map-get($color, "Slate-900");
+    display: flex;
+    border: solid 1px map-get($color, "Slate-900");
+    border-radius: 5px;
+    align-items: center;
+
+    input {
+        border: none;
+        flex: 7 7;
+        height: 80%;
+    }
+
+    p {
+        flex: 1 1;
+        margin: auto;
+    }
 }
