@@ -16,9 +16,11 @@ This will be the main component that will hold all the other components.
 
 ### Calculator
 
-#### CalculatorContainer
+This container component will hold all the components that are related to the mortgage calculator. It will use useContext to pass down the state to the children components.
 
-This container component will be the top level parent component that all components will be nested under. We can use a provider to pass down the state to the children components.
+##### MortgageContext
+
+This will be a context element that is used to pass down the state to the children components. It will hold the state of the mortgage calculator including the mortgage amount, mortgage term, interest rate, and mortgage type. This will allow the children components to access the state without having to use prop-drilling.
 
 ##### State
 
@@ -26,6 +28,23 @@ This container component will be the top level parent component that all compone
 -   `mortgageTerm`: number
 -   `interestRate`: number
 -   `mortgageType`: string
+
+#### CalculatorContainer
+
+This container component will be the top level parent component that all components will be nested under. We can use a provider to pass down the state to the children components.
+
+##### Context
+
+-   `mortgageAmount`: number
+-   `mortgageTerm`: number
+-   `interestRate`: number
+
+##### Handlers
+
+-   `handleMortgageAmountChange`: function
+-   `handleMortgageTermChange`: function
+-   `handleInterestRateChange`: function
+-   `handleMortgageTypeChange`: function
 
 #### CalculatorInput
 
@@ -39,6 +58,12 @@ This component will be responsible for taking in user input and changing the sta
 -   `value`: string
 -   `onChange`: function
 -   `designator`: string
+
+#### CalculatorSelect
+
+This component will be responsible for holding the mortgage type radio buttons. It will have a label and two radio buttons.
+
+##### Props
 
 #### MortgageSelector
 

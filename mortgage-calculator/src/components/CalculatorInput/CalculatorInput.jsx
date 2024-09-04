@@ -1,21 +1,32 @@
 import React from "react";
 import styles from "./CalculatorInput.module.scss";
 
-const CalculatorInput = ({ label, designator, onLeft = true }) => {
+const CalculatorInput = ({
+    label,
+    designator,
+    onLeft = true,
+    value,
+    onChange,
+}) => {
     return (
         <div className={styles.container}>
-            <label htmlFor="container__input" className="container__label">
+            <label htmlFor="containerInput" className="container__label">
                 {label}
             </label>
             {onLeft ? (
                 <div className={styles.mockInput}>
-                    <p className="mock-input__designator">{designator}</p>
-                    <input className="mock-input__input" type="number"></input>
+                    <p id="containerInput">{designator}</p>
+                    <input
+                        id="containerInput"
+                        type="number"
+                        value={value}
+                        onChange={() => onchange()}
+                    ></input>
                 </div>
             ) : (
                 <div className={styles.mockInput}>
-                    <input className="mock-input__input" type="number"></input>
-                    <p className="mock-input__designator">{designator}</p>
+                    <input id="containerInput" type="number"></input>
+                    <p>{designator}</p>
                 </div>
             )}
         </div>
