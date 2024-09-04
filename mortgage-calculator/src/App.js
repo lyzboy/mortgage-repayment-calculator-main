@@ -6,16 +6,18 @@ function App() {
     return (
         <div className="App">
             <CalculatorInput label="Mortgage Amount" designator="$" />
-            <CalculatorInput
-                label="Mortgage Term"
-                designator="years"
-                onLeft={false}
-            />
-            <CalculatorInput
-                label="Interest Rate"
-                designator="%"
-                onLeft={false}
-            />
+            <div className="testClass">
+                <CalculatorInput
+                    label="Mortgage Term"
+                    designator="years"
+                    onLeft={false}
+                />
+                <CalculatorInput
+                    label="Interest Rate"
+                    designator="%"
+                    onLeft={false}
+                />
+            </div>
         </div>
     );
 }
