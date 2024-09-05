@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./CalculatorInput.module.scss";
-import "../../styles/Global.module.scss";
 
 const CalculatorInput = ({
     label,

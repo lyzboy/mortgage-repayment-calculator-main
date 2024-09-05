@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./styles/Global.module.scss";
+
 import CalculatorInput from "./components/CalculatorInput/CalculatorInput";
 
 function App() {
