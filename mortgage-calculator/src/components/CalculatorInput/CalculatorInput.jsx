@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CalculatorInput.module.scss";
+import "../../styles/Global.module.scss";
 
 const CalculatorInput = ({
     label,
@@ -9,10 +10,8 @@ const CalculatorInput = ({
     onChange,
 }) => {
     return (
-        <div className={styles.container}>
-            <label htmlFor="containerInput" className="container__label">
-                {label}
-            </label>
+        <div className="container">
+            <label htmlFor="containerInput">{label}</label>
             {onLeft ? (
                 <div className={styles.mockInput}>
                     <p id="containerInput">{designator}</p>
