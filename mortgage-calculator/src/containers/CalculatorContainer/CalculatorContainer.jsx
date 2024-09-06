@@ -1,11 +1,13 @@
 import React from "react";
 
-import CalculatorInput from "../components/CalculatorInput/CalculatorInput";
-import CalculatorSelect from "../components/CalculatorSelect/CalculatorSelect";
+import styles from "./CalculatorContainer.module.scss";
+
+import CalculatorInput from "../../components/CalculatorInput/CalculatorInput";
+import CalculatorSelect from "../../components/CalculatorSelect/CalculatorSelect";
 
 const CalculatorContainer = () => {
     return (
-        <div>
+        <div className={styles.container}>
             <CalculatorInput label="Mortgage Amount" designator="$" />
             <div className="testClass">
                 <CalculatorInput
