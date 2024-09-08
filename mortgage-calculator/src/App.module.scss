@@ -1,0 +1,10 @@
+@import "./styles/common";
+
+.App {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    background-color: map-get($color, "Primary");
+    border-radius: 2rem;
+    overflow: hidden;
+}

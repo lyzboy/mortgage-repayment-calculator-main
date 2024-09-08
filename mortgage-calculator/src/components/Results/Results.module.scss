@@ -1,0 +1,12 @@
+@import "../../styles/common";
+.container {
+    background-color: map-get($color, "Slate-900");
+    color: map-get($color, "Primary");
+    font-size: 1.6rem;
+    padding: 2rem;
+    border-bottom-left-radius: 4rem;
+
+    h2 {
+        margin: 0;
+    }
+}

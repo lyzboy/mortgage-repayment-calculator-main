@@ -1,6 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
-import CalculatorInput from "./components/CalculatorInput/CalculatorInput";
+import styles from "./App.module.scss";
+import "./styles/Global.module.scss";
+
+import CalculatorContainer from "./containers/CalculatorContainer/CalculatorContainer";
+import Results from "./components/Results/Results";
 
 import { useState } from "react";
 
@@ -24,6 +26,9 @@ function App() {
                         onLeft={false}
                     />
                 </div>
+        <div className={styles.App}>
+            <CalculatorContainer />
+            <Results />
         </div>
     );
 }

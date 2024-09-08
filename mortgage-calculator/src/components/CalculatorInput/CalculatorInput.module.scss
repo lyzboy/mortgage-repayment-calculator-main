@@ -1,17 +1,5 @@
 @import "../../styles/common";
 
-.container {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    font-size: 1.6rem;
-
-    label {
-        color: map-get($color, "Slate-700");
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-}
 .mockInput {
     //TODO: fix this width when Calculator Container is made, should be responsive.
     width: 30rem;

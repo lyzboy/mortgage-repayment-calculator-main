@@ -13,10 +13,8 @@ const CalculatorInput = ({
         onChange(targetValue);
     }
     return (
-        <div className={styles.container}>
-            <label htmlFor="containerInput" className="container__label">
-                {label}
-            </label>
+        <div className="container">
+            <label htmlFor="containerInput">{label}</label>
             {onLeft ? (
                 <div className={styles.mockInput}>
                     <p id="containerInput">{designator}</p>
