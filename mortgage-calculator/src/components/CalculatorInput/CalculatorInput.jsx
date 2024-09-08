@@ -8,6 +8,10 @@ const CalculatorInput = ({
     value,
     onChange,
 }) => {
+
+    const handleChange = (targetValue) => {
+        onChange(targetValue);
+    }
     return (
         <div className={styles.container}>
             <label htmlFor="containerInput" className="container__label">
@@ -20,12 +24,17 @@ const CalculatorInput = ({
                         id="containerInput"
                         type="number"
                         value={value}
-                        onChange={() => onchange()}
+                        onChange={(e) => handleChange(e.target.value)}
                     ></input>
                 </div>
             ) : (
                 <div className={styles.mockInput}>
-                    <input id="containerInput" type="number"></input>
+                    <input
+                        id="containerInput"
+                        type="number"
+                        value={value}
+                        onChange={(e) => handleChange(e.target.value)}
+                    ></input>
                     <p>{designator}</p>
                 </div>
             )}
