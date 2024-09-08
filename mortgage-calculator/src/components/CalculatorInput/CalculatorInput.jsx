@@ -8,10 +8,6 @@ const CalculatorInput = ({
     value,
     onChange,
 }) => {
-
-    const handleChange = (targetValue) => {
-        onChange(targetValue);
-    }
     return (
         <div className="container">
             <label htmlFor="containerInput">{label}</label>
@@ -22,7 +18,7 @@ const CalculatorInput = ({
                         id="containerInput"
                         type="number"
                         value={value}
-                        onChange={(e) => handleChange(e.target.value)}
+                        onChange={(e) => onChange(e.target.value)}
                     ></input>
                 </div>
             ) : (
@@ -31,7 +27,7 @@ const CalculatorInput = ({
                         id="containerInput"
                         type="number"
                         value={value}
-                        onChange={(e) => handleChange(e.target.value)}
+                        onChange={(e) => onChange(e.target.value)}
                     ></input>
                     <p>{designator}</p>
                 </div>

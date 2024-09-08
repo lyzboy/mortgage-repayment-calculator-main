@@ -4,31 +4,20 @@ import "./styles/Global.module.scss";
 import CalculatorContainer from "./containers/CalculatorContainer/CalculatorContainer";
 import Results from "./components/Results/Results";
 
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+import MortgageTermContext from "./context/MortgageTermContext";
 
 function App() {
-
     const [mortgageTerm, setMortgageTerm] = useState(0);
     return (
-        <div className="App">
-                <CalculatorInput label="Mortgage Amount" designator="$" />
-                <div className="testClass">
-                    <CalculatorInput
-                        label="Mortgage Term"
-                        designator="years"
-                        onLeft={false}
-                        value={mortgageTerm}
-                        onChange={setMortgageTerm}
-                    />
-                    <CalculatorInput
-                        label="Interest Rate"
-                        designator="%"
-                        onLeft={false}
-                    />
-                </div>
         <div className={styles.App}>
-            <CalculatorContainer />
-            <Results />
+            <MortgageTermContext.Provider
+                value={{ mortgageTerm, setMortgageTerm }}
+            >
+                <CalculatorContainer />
+                <Results />
+            </MortgageTermContext.Provider>
         </div>
     );
 }
