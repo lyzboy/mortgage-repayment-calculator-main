@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import InterestOnlyContext from "../../context/InterestOnlyContext";
 
 const CalculatorSelect = () => {
+    const { isInterestOnly, setIsInterestOnly } =
+        useContext(InterestOnlyContext);
+
+    const handleChange = (event) => {
+        setIsInterestOnly(event.target.value === "interestOnly");
+    };
+
     return (
         <div className="container">
             <label>Mortgage Type</label>
@@ -10,9 +18,10 @@ const CalculatorSelect = () => {
                     id="repayment"
                     name="mortgageType"
                     value="repayment"
-                    checked
+                    checked={!isInterestOnly}
+                    onChange={handleChange}
                 />
-                <label for="repayment">Repayment</label>
+                <label htmlFor="repayment">Repayment</label>
             </div>
             <div>
                 <input
@@ -20,8 +29,10 @@ const CalculatorSelect = () => {
                     id="interestOnly"
                     name="mortgageType"
                     value="interestOnly"
+                    checked={isInterestOnly}
+                    onChange={handleChange}
                 />
-                <label for="interestOnly">Interest Only</label>
+                <label htmlFor="interestOnly">Interest Only</label>
             </div>
         </div>
     );

@@ -4,13 +4,15 @@ import "./styles/Global.module.scss";
 import CalculatorContainer from "./containers/CalculatorContainer/CalculatorContainer";
 import Results from "./components/Results/Results";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MortgageTermContext from "./context/MortgageTermContext";
 
 import MortgageAmountContext from "./context/MortgageAmountContext";
 
 import MortgageInterestContext from "./context/MortgageInterestContext";
+
+import InterestOnlyContext from "./context/InterestOnlyContext";
 
 import { calculateMortgage } from "./utils/calculator";
 
@@ -23,6 +25,10 @@ function App() {
     const [totalRepayment, setTotalRepayment] = useState("$0.00");
     const [interestOnlyPayment, setInterestOnlyPayment] = useState("0.00");
     const [isCalculated, setIsCalculated] = useState(false);
+
+    useEffect(() => {
+        setIsCalculated(false);
+    }, [isInterestOnly]);
 
     const handleCalculate = () => {
         const result = calculateMortgage(
@@ -48,20 +54,22 @@ function App() {
                     <MortgageInterestContext.Provider
                         value={{ mortgageInterest, setMortgageInterest }}
                     >
-                        <CalculatorContainer
-                            handleCalculate={() => {
-                                handleCalculate();
-                            }}
-                            interestOnlyPayment={interestOnlyPayment}
-                            setInterestOnlyPayment={setInterestOnlyPayment}
-                        />
-                        <Results
-                            isCalculated={isCalculated}
-                            monthlyRepayment={monthlyRepayment}
-                            totalRepayment={totalRepayment}
-                            interestOnlyPayment={interestOnlyPayment}
-                            isInterestOnly={isInterestOnly}
-                        />
+                        <InterestOnlyContext.Provider
+                            value={{ isInterestOnly, setIsInterestOnly }}
+                        >
+                            <CalculatorContainer
+                                handleCalculate={() => {
+                                    handleCalculate();
+                                }}
+                            />
+                            <Results
+                                isCalculated={isCalculated}
+                                monthlyRepayment={monthlyRepayment}
+                                totalRepayment={totalRepayment}
+                                interestOnlyPayment={interestOnlyPayment}
+                                isInterestOnly={isInterestOnly}
+                            />
+                        </InterestOnlyContext.Provider>
                     </MortgageInterestContext.Provider>
                 </MortgageAmountContext.Provider>
             </MortgageTermContext.Provider>
