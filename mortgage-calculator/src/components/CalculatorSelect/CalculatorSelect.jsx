@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import InterestOnlyContext from "../../context/InterestOnlyContext";
 
+import styles from "./CalculatorSelect.module.scss";
+
 const CalculatorSelect = () => {
     const { isInterestOnly, setIsInterestOnly } =
         useContext(InterestOnlyContext);
@@ -10,9 +12,13 @@ const CalculatorSelect = () => {
     };
 
     return (
-        <div className="container">
+        <div className={`container ${styles.container}`}>
             <label>Mortgage Type</label>
-            <div>
+            <div
+                className={`${styles.radio} ${
+                    !isInterestOnly && styles.selectContainer
+                }`}
+            >
                 <input
                     type="radio"
                     id="repayment"
@@ -23,7 +29,11 @@ const CalculatorSelect = () => {
                 />
                 <label htmlFor="repayment">Repayment</label>
             </div>
-            <div>
+            <div
+                className={`${styles.radio} ${
+                    isInterestOnly && styles.selectContainer
+                }`}
+            >
                 <input
                     type="radio"
                     id="interestOnly"
