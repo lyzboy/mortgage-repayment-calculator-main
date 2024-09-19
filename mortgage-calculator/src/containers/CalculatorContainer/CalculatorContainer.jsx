@@ -20,19 +20,24 @@ const CalculatorContainer = ({ handleCalculate }) => {
 
     return (
         <div className={styles.container}>
+            <div>
+                <h1>Mortgage Calculator</h1>
+                <p>Clear All</p>
+            </div>
             <CalculatorInput
                 label="Mortgage Amount"
                 designator="$"
                 value={mortgageAmount}
                 onChange={setMortgageAmount}
             />
-            <div className="testClass">
+            <div className={styles.termRate}>
                 <CalculatorInput
                     label="Mortgage Term"
                     designator="years"
                     onLeft={false}
                     value={mortgageTerm}
                     onChange={setMortgageTerm}
+                    extraStyle={styles.extraContainer}
                 />
                 <CalculatorInput
                     label="Interest Rate"
@@ -40,6 +45,7 @@ const CalculatorContainer = ({ handleCalculate }) => {
                     onLeft={false}
                     value={mortgageInterest}
                     onChange={setMortgageInterest}
+                    extraStyle={styles.extraContainer}
                 />
             </div>
             <CalculatorSelect />

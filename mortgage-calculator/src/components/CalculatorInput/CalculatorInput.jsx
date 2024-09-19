@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./CalculatorInput.module.scss";
+import MortgageErrorContext from "../../context/MortgageErrorContext";
 
 const CalculatorInput = ({
     label,
@@ -7,9 +8,22 @@ const CalculatorInput = ({
     onLeft = true,
     value,
     onChange,
+    extraStyle
 }) => {
+
+    const {
+        mortgageTermError,
+        mortgageAmountError, 
+        mortgageInterestError
+    } = useContext(MortgageErrorContext);
+
+    let error = false;
+    if(label === "Mortgage Term") error = mortgageTermError;
+    if(label === "Mortgage Amount") error = mortgageAmountError;
+    if(label === "Interest Rate") error = mortgageInterestError;
+
     return (
-        <div className="container">
+        <div className={`container ${extraStyle}`}>
             <label htmlFor="containerInput">{label}</label>
             {onLeft ? (
                 <div className={styles.mockInput}>

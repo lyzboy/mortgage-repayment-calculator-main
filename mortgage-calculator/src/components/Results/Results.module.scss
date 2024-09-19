@@ -5,8 +5,15 @@
     font-size: 1.6rem;
     padding: 2rem;
     border-bottom-left-radius: 4rem;
+    flex: 1 2;
 
     h2 {
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container {
+        border-radius: 0;
     }
 }
