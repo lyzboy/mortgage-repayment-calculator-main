@@ -15,17 +15,15 @@ import MortgageErrorContext from "./context/MortgageErrorContext";
 import CalculatorContainer from "./containers/CalculatorContainer/CalculatorContainer";
 import Results from "./components/Results/Results";
 
-
 function App() {
-    const [mortgageTerm, setMortgageTerm] = useState();
-    const [mortgageAmount, setMortgageAmount] = useState();
-    const [mortgageInterest, setMortgageInterest] = useState();
+    const [mortgageTerm, setMortgageTerm] = useState("");
+    const [mortgageAmount, setMortgageAmount] = useState("");
+    const [mortgageInterest, setMortgageInterest] = useState("");
     const [isInterestOnly, setIsInterestOnly] = useState(false);
     const [monthlyRepayment, setMonthlyRepayment] = useState("$0.00");
     const [totalRepayment, setTotalRepayment] = useState("$0.00");
     const [interestOnlyPayment, setInterestOnlyPayment] = useState("0.00");
     const [isCalculated, setIsCalculated] = useState(false);
-    const [formValidated, setFormValidated] = useState(false);
     const [mortgageTermError, setMortgageTermError] = useState(false);
     const [mortgageAmountError, setMortgageAmountError] = useState(false);
     const [mortgageInterestError, setMortgageInterestError] = useState(false);
@@ -34,29 +32,64 @@ function App() {
         setIsCalculated(false);
     }, [isInterestOnly]);
 
+    useEffect(() => {
+        setMortgageAmountError(false);
+    }, [mortgageAmount]);
+
+    useEffect(() => {
+        setMortgageInterestError(false);
+    }, [mortgageInterest]);
+
+    useEffect(() => {
+        setMortgageTermError(false);
+    }, [mortgageTerm]);
+
+    const handleClearItems = () => {
+        setMortgageAmount("");
+        setMortgageInterest("");
+        setMortgageTerm("");
+    }
+
     const handleCalculate = () => {
-        validateForm();
-        const result = calculateMortgage(
-            mortgageAmount,
-            mortgageTerm,
-            mortgageInterest,
-            isInterestOnly
-        );
-        setMonthlyRepayment(result.monthlyPayment);
-        setTotalRepayment(result.totalAmount);
-        setInterestOnlyPayment(result.totalInterest);
-        setIsCalculated(true);
+        if (validateForm()) {
+            const result = calculateMortgage(
+                mortgageAmount,
+                mortgageTerm,
+                mortgageInterest,
+                isInterestOnly
+            );
+            setMonthlyRepayment(result.monthlyPayment);
+            setTotalRepayment(result.totalAmount);
+            setInterestOnlyPayment(result.totalInterest);
+            setIsCalculated(true);
+        }
     };
 
-    const validateForm = ()=>{
-        if(!mortgageTerm){
-            console.log("mortgage is undefined");
-            return;
+    const validateForm = () => {
+        let hasError = false;
+        let localMortgageTermError = false;
+        let localMortgageAmountError = false;
+        let localMortgageInterestError = false;
+
+        if (!mortgageTerm) {
+            localMortgageTermError = true;
+            hasError = true;
         }
-        if(validator.isFloat(mortgageTerm) || validator.isInt(mortgageTerm)){
-            console.log("mortgage term is number");
-        } else console.log("mortgage term is NAN");
-    }
+        if (!mortgageAmount) {
+            localMortgageAmountError = true;
+            hasError = true;
+        }
+        if (!mortgageInterest) {
+            localMortgageInterestError = true;
+            hasError = true;
+        }
+
+        setMortgageTermError(localMortgageTermError);
+        setMortgageAmountError(localMortgageAmountError);
+        setMortgageInterestError(localMortgageInterestError);
+
+        return !hasError;
+    };
 
     return (
         <div className={styles.App}>
@@ -72,17 +105,22 @@ function App() {
                         <InterestOnlyContext.Provider
                             value={{ isInterestOnly, setIsInterestOnly }}
                         >
-                            <MortgageErrorContext.Provider value={{
-                                mortgageTermError,
-                                setMortgageTermError,
-                                mortgageAmountError,
-                                setMortgageAmountError,
-                                mortgageInterestError,
-                                setMortgageInterestError
-                            }}>
+                            <MortgageErrorContext.Provider
+                                value={{
+                                    mortgageTermError,
+                                    setMortgageTermError,
+                                    mortgageAmountError,
+                                    setMortgageAmountError,
+                                    mortgageInterestError,
+                                    setMortgageInterestError,
+                                }}
+                            >
                                 <CalculatorContainer
                                     handleCalculate={() => {
                                         handleCalculate();
+                                    }}
+                                    handleClearItems={()=>{
+                                        handleClearItems();
                                     }}
                                 />
                                 <Results

@@ -23,10 +23,10 @@ const CalculatorInput = ({
     if(label === "Interest Rate") error = mortgageInterestError;
 
     return (
-        <div className={`container ${extraStyle}`}>
+        <div className={`container ${extraStyle} ${styles.parent}`}>
             <label htmlFor="containerInput">{label}</label>
             {onLeft ? (
-                <div className={styles.mockInput}>
+                <div className={`${styles.mockInput}  ${error && styles.alert}`}>
                     <p id="containerInput">{designator}</p>
                     <input
                         id="containerInput"
@@ -36,7 +36,7 @@ const CalculatorInput = ({
                     ></input>
                 </div>
             ) : (
-                <div className={styles.mockInput}>
+                <div className={`${styles.mockInput}  ${error && styles.alert}`}>
                     <input
                         id="containerInput"
                         type="number"
@@ -46,6 +46,9 @@ const CalculatorInput = ({
                     <p>{designator}</p>
                 </div>
             )}
+            { error &&
+            <p className={styles.required}>This field is required</p>
+}
         </div>
     );
 };

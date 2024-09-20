@@ -9,7 +9,7 @@ import MortgageTermContext from "../../context/MortgageTermContext";
 import MortgageAmountContext from "../../context/MortgageAmountContext";
 import MortgageInterestContext from "../../context/MortgageInterestContext";
 
-const CalculatorContainer = ({ handleCalculate }) => {
+const CalculatorContainer = ({ handleCalculate, handleClearItems }) => {
     const { mortgageTerm, setMortgageTerm } = useContext(MortgageTermContext);
     const { mortgageAmount, setMortgageAmount } = useContext(
         MortgageAmountContext
@@ -20,9 +20,9 @@ const CalculatorContainer = ({ handleCalculate }) => {
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.title}>
                 <h1>Mortgage Calculator</h1>
-                <p>Clear All</p>
+                <p onClick={handleClearItems}>Clear All</p>
             </div>
             <CalculatorInput
                 label="Mortgage Amount"

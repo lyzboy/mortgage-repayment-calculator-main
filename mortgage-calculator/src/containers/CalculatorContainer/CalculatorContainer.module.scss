@@ -22,12 +22,34 @@ button {
 .termRate {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-
+    gap: 2rem;
 }
 
 .extraContainer {
-    max-width: 50%;
+    //max-width: 50%;
+    width: 100%
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        color: map-get($color, "Slate-900" );
+        font-size: 2.4rem;
+    }
+
+    p {
+        color: map-get($color, "Slate-700");
+        font-size: 1.4rem;
+        text-decoration: underline;
+
+        &:hover{
+            cursor: pointer;
+            color: map-get($color, "Slate-500");
+        }
+    }
 }
 
 
