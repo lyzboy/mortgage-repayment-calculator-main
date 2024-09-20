@@ -37,7 +37,7 @@ button {
 
     h1 {
         color: map-get($color, "Slate-900" );
-        font-size: 2.4rem;
+        font-size: 2.2rem;
     }
 
     p {
@@ -64,5 +64,11 @@ button {
 
     .extraContainer {
         max-width: 100%;
+    }
+
+    .title {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
     }
 }
