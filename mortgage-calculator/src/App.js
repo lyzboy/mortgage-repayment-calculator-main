@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import validator from "validator";
 
 import styles from "./App.module.scss";
 import "./styles/Global.module.scss";
