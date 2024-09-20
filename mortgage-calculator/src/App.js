@@ -48,6 +48,7 @@ function App() {
         setMortgageAmount("");
         setMortgageInterest("");
         setMortgageTerm("");
+        setIsCalculated(false);
     }
 
     const handleCalculate = () => {
